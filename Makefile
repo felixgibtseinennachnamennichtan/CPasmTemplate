@@ -49,16 +49,4 @@ $(SDK_DIR)/sdk.o:
 %.o: %.s
 	$(AS) $< -o $@ $(AS_FLAGS)
 
-%.o: %.c
-	$(CC) -c $< -o $@ $(CC_FLAGS)
-
-# Break the build if global constructors are present:
-# Read the sections from the object file (with readelf -S) and look for any
-# called .ctors - if they exist, give the user an error message, delete the
-# object file (so that on subsequent runs of make the build will still fail)
-# and exit with an error code to halt the build.
-%.o: %.cpp
-	$(CXX) -c $< -o $@ $(CXX_FLAGS)
-	@$(READELF) $@ -S | grep ".ctors" > /dev/null && echo "ERROR: Global constructors aren't supported." && rm $@ && exit 1 || exit 0
-
 .PHONY: bin hhk all clean

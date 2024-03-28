@@ -1,8 +1,9 @@
+.section .header
 /* APP_NAME        */ .string "Hello World2"
 /* APP_DESCRIPTION */ .string "This is a simple Hello World program"
 /* APP_AUTHOR      */ .string "SnailMath"
 /* APP_VERSION     */ .string "1.0.0"
-
+.section .text
 .align 1 !make sure everything is aligned.
 
 .global _main

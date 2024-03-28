@@ -7,6 +7,7 @@ SECTIONS {
 	}
 	. = 0x8CFF0010;
 	.text : {
+		*(.header)
 		*(.text)
 	}
 }
